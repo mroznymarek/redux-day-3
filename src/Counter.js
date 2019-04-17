@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { incAsyncActionCreator } from './state/counter'
 
 const Counter = (props) => (
+    props._number !== null ?
     <div>
         <h1>
             {props._number}
@@ -13,6 +14,8 @@ const Counter = (props) => (
             +
         </button>
     </div>
+    :
+    'Ładowanie ...'
 )
 
 const mapStateToProps = state => ({

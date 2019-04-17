@@ -5,8 +5,11 @@ const SET = 'counter/SET'
 export const incAsyncActionCreator = () => (dispatch, getState) => {
     const state = getState()
     const currentNumber = state.counter.number
-    
-    database.ref('/counter').set(currentNumber + 1)
+
+    if (currentNumber !== null) {database.ref('/counter').set(currentNumber + 1)
+    }else{
+        alert('Jeszcze nie można klikać')
+    }
 }
 
 export const startCounterSyncAsyncAction = () => (dispatch, getState) => {
@@ -28,7 +31,7 @@ const setActionCreator = number => ({
 })
 
 const initialState = {
-    number: 0,
+    number: null,
 }
 
 export default (state = initialState, action) => {
