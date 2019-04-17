@@ -15,7 +15,6 @@ export const startCounterSyncAsyncAction = () => (dispatch, getState) => {
     )
 }
 
-
 const setActionCreator = number => ({
     type: SET,
     number
