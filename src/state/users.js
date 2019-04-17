@@ -1,21 +1,34 @@
 const SET = 'users/SET'
 
+export const fetchUsersAsyncActionCreator = (numberOfUsers = 10) => (dispatch, getState) => {
+
+    fetch('https://randomuser.me/api?results=' + numberOfUsers)
+        .then(r => r.json())
+        .then(data => {
+            dispatch(
+                setUsersActionCreator(
+                    data.results
+                )
+            )                   
+        })
+}
+
 export const setUsersActionCreator = users => ({
-    type: SET, 
+    type: SET,
     users
 })
 
 const initialState = {
-    users: []
+    users: null,
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case SET:
-        return {
-            ...state,
-            users: action.users,
-        }
+            return {
+                ...state,
+                users: action.users,
+            }
         default:
             return state
     }
